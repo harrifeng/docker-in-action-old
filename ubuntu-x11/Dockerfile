@@ -18,6 +18,8 @@ RUN apt-get install -y xfce4
 
 RUN apt-get install -y git
 RUN git clone https://github.com/harrifeng/.emacs.d.git /home/hfeng/.emacs.d
+RUN chown hfeng /home/hfeng/.emacs.d
+RUN chgrp hfeng /home/hfeng/.emacs.d
 
 RUN apt-get install -y emacs24
 
