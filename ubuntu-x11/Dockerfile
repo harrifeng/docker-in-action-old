@@ -25,7 +25,7 @@ RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 RUN apt-get install -y g++ default-jdk maven
 
 # Network utility
-RUN apt-get install -y net-tools iputils-ping
+RUN apt-get install -y net-tools iputils-ping curl
 
 RUN apt-get install -y emacs24
 
