@@ -2,7 +2,7 @@ FROM ubuntu:15.04
 
 MAINTAINER harrifeng "harrifeng@gmail.com"
 
-RUN sed -i 's/archive.ubuntu/mirrors.163/g  /etc/apt/sources.list
+RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
 
 RUN apt-get update
 
