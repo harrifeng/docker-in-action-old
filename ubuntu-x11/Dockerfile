@@ -13,9 +13,14 @@ RUN useradd -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
 RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
-
 RUN apt-get install -y x-window-system
 RUN apt-get install -y xfce4
 
+RUN apt-get install -y git
+RUN git clone https://github.com/harrifeng/.emacs.d.git /home/hfeng/.emacs.d
+
+RUN apt-get install -y emacs24
+
 RUN apt-get install -y openssh-server
-RUN /etc/init.d/ssh restart
+EXPOSE 22
+RUN /etc/init.d/ssh start -D
