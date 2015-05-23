@@ -9,7 +9,7 @@ RUN apt-get update
 # /etc/sudoers is needed this
 RUN apt-get install -y sudo
 
-RUN useradd -m hfeng
+RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
 RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
