@@ -23,4 +23,4 @@ RUN apt-get install -y emacs24
 
 RUN apt-get install -y openssh-server
 EXPOSE 22
-RUN /etc/init.d/ssh start -D
+CMD ["/etc/init.d/ssh", "start", "-D"]
