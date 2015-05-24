@@ -13,8 +13,11 @@ RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
 RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
-# X-windows support
-RUN apt-get install -y x-window-system xfce4
+# X-windows support, may not needed any more
+# RUN apt-get install -y x-window-system xfce4
+
+# Font inconsolata
+RUN apt-get install -y fonts-inconsolata
 
 RUN apt-get install -y git
 RUN git clone https://github.com/harrifeng/.emacs.d.git /home/hfeng/.emacs.d
