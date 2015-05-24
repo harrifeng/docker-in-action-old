@@ -17,7 +17,7 @@ RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 # RUN apt-get install -y x-window-system xfce4
 
 # Font inconsolata
-RUN apt-get install -y fonts-inconsolata
+RUN apt-get install -y fonts-wqy-zenhei fonts-inconsolata
 
 RUN apt-get install -y git
 RUN git clone https://github.com/harrifeng/.emacs.d.git /home/hfeng/.emacs.d
