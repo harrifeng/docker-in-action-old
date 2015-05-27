@@ -20,7 +20,7 @@ RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 RUN apt-get install -y fonts-wqy-zenhei fonts-inconsolata
 
 RUN apt-get install -y git
-RUN git clone https://github.com/harrifeng/.emacs.d.git /home/hfeng/.emacs.d
+RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
 RUN chown -hR hfeng /home/hfeng/.emacs.d
 RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
