@@ -2,13 +2,6 @@ FROM ruby:2.1
 
 MAINTAINER Haoran Feng
 
-RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
-  tar -zxvf jsl-0.3.0-src.tar.gz && \
-  cd jsl-0.3.0/src && \
-  make -f Makefile.ref BUILD_OPT=1 && \
-  cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
-  cd - && \
-  rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -45,6 +38,15 @@ RUN apt-get update && \
       libicu-dev \
       unixodbc-dev \
       libffi-dev
+
+RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
+  tar -zxvf jsl-0.3.0-src.tar.gz && \
+  cd jsl-0.3.0/src && \
+  make -f Makefile.ref BUILD_OPT=1 && \
+  cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
+  cd - && \
+  rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
+
 
 ENV APP_HOME /myapp
 RUN mkdir $APP_HOME
