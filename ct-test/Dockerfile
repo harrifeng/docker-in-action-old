@@ -17,7 +17,6 @@ RUN apt-get update && \
        software-properties-common python-software-properties
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      ffmpeg \
       build-essential \
       curl \
       git-core \
