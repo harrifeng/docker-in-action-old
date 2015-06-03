@@ -49,6 +49,7 @@ RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-2.1.5.tar.gz && \
   cd .. && \
   rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
   echo 'install: --no-rdoc --no-ri' > /.gemrc && \
+  echo 'update: --no-rdoc --no-ri' >> /.gemrc
 RUN gem install bundler
 RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
   tar -zxvf jsl-0.3.0-src.tar.gz && \
