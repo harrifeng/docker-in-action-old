@@ -12,8 +12,6 @@ ENV TZ US/Pacific
 RUN echo 'export DB_PWD=$MYSQL_ENV_MYSQL_ROOT_PASSWORD' >> /root/.bashrc
 RUN echo 'export DB_HOST=$MYSQL_PORT_3306_TCP_ADDR' >> /root/.bashrc
 
-RUN gem install bundler
-
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
        software-properties-common python-software-properties
