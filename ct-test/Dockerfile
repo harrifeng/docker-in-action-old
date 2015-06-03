@@ -9,8 +9,8 @@ ENV LC_ALL C.UTF-8
 ENV TZ US/Pacific
 
 # In order to connect mysql container
-echo 'export DB_PWD=$MYSQL_ENV_MYSQL_ROOT_PASSWORD' >> /root/.bashrc
-echo 'export DB_HOST=$MYSQL_PORT_3306_TCP_ADDR' >> /root/.bashrc
+RUN echo 'export DB_PWD=$MYSQL_ENV_MYSQL_ROOT_PASSWORD' >> /root/.bashrc
+RUN echo 'export DB_HOST=$MYSQL_PORT_3306_TCP_ADDR' >> /root/.bashrc
 
 RUN gem install bundler
 
