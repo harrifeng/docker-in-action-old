@@ -1,16 +1,18 @@
-FROM ubuntu:14.04
-MAINTAINER Gene Wu
-CMDBUILD        docker build -t ctbase .
-CMDRUN          docker run -i -t -v $HOME/trunk:/ct -p 3000 ctbase /bin/bash
+FROM ubuntu:15.04
+MAINTAINER Haoran Feng
 ENV http_proxy http://proxy.wdf.sap.corp:8080
 ENV https_proxy http://proxy.wdf.sap.corp:8080
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+RUN gem install bundler
+ENV TZ US/Pacific
+
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
        software-properties-common python-software-properties
-# RUN add-apt-repository ppa:jon-severinsson/ffmpeg
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      # ffmpeg \
+      ffmpeg \
       build-essential \
       curl \
       git-core \
@@ -43,9 +45,6 @@ RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-2.1.5.tar.gz && \
   rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
   echo 'install: --no-rdoc --no-ri' > /.gemrc && \
   echo 'update: --no-rdoc --no-ri' >> /.gemrc
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-RUN gem install bundler
 RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
   tar -zxvf jsl-0.3.0-src.tar.gz && \
   cd jsl-0.3.0/src && \
@@ -53,4 +52,3 @@ RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
   cd - && \
   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
-ENV TZ US/Pacific
