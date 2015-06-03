@@ -41,6 +41,7 @@ RUN apt-get update && \
       libicu-dev \
       unixodbc-dev \
       libffi-dev
+RUN gem install bundler
 RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
   tar -zxvf jsl-0.3.0-src.tar.gz && \
   cd jsl-0.3.0/src && \
