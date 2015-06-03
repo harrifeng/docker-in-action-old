@@ -7,10 +7,10 @@ ENV https_proxy http://proxy.wdf.sap.corp:8080
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
        software-properties-common python-software-properties
-RUN add-apt-repository ppa:jon-severinsson/ffmpeg
+# RUN add-apt-repository ppa:jon-severinsson/ffmpeg
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      ffmpeg \
+      # ffmpeg \
       build-essential \
       curl \
       git-core \
