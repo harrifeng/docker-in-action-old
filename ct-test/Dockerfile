@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:14.04
 MAINTAINER Haoran Feng
 # company  firewall
 ENV http_proxy http://proxy.wdf.sap.corp:8080
