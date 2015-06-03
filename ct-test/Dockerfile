@@ -1,11 +1,18 @@
 FROM ubuntu:15.04
 MAINTAINER Haoran Feng
+# company  firewall
 ENV http_proxy http://proxy.wdf.sap.corp:8080
 ENV https_proxy http://proxy.wdf.sap.corp:8080
+# For testcase
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-RUN gem install bundler
 ENV TZ US/Pacific
+
+# In order to connect mysql container
+echo 'export DB_PWD=$MYSQL_ENV_MYSQL_ROOT_PASSWORD' >> /root/.bashrc
+echo 'export DB_HOST=$MYSQL_PORT_3306_TCP_ADDR' >> /root/.bashrc
+
+RUN gem install bundler
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
