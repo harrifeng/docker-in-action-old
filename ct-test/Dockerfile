@@ -1,8 +1,11 @@
 FROM ubuntu:14.04
 MAINTAINER Haoran Feng
+
+RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
+
 # company  firewall
-ENV http_proxy http://proxy.wdf.sap.corp:8080
-ENV https_proxy http://proxy.wdf.sap.corp:8080
+# ENV http_proxy http://proxy.wdf.sap.corp:8080
+# ENV https_proxy http://proxy.wdf.sap.corp:8080
 # For testcase
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
