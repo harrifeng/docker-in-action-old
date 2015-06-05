@@ -39,7 +39,7 @@ RUN apt-get update && \
       libicu-dev \
       unixodbc-dev \
       libffi-dev
-RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-2.1.5.tar.gz && \
+RUN curl -O http://192.168.59.3:8000/ruby-2.1.5.tar.gz && \
   tar -zxvf ruby-2.1.5.tar.gz && \
   cd ruby-2.1.5 && \
   CFLAGS="-march=native -O3" ./configure --disable-install-doc && \
@@ -49,13 +49,13 @@ RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-2.1.5.tar.gz && \
   rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
   echo 'install: --no-rdoc --no-ri' > /.gemrc && \
   echo 'update: --no-rdoc --no-ri' >> /.gemrc
-RUN gem install bundler
-RUN curl -O http://www.javascriptlint.com/download/jsl-0.3.0-src.tar.gz && \
+RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
   tar -zxvf jsl-0.3.0-src.tar.gz && \
   cd jsl-0.3.0/src && \
   make -f Makefile.ref BUILD_OPT=1 && \
   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
   cd - && \
   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
+# RUN gem install bundler -v '1.6.0'
 
 EXPOSE 3000
