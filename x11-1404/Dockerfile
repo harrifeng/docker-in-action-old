@@ -6,23 +6,11 @@ RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
 
 RUN apt-get update
 
-# /etc/sudoers is needed this
-RUN apt-get install -y sudo
-
-RUN useradd -s /bin/bash -m hfeng
-RUN echo "hfeng:hfeng" | chpasswd
-RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
-
 # X-windows support, may not needed any more
 # RUN apt-get install -y x-window-system xfce4
 
 # Font inconsolata
 RUN apt-get install -y fonts-wqy-zenhei fonts-inconsolata
-
-RUN apt-get install -y git
-RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
-RUN chown -hR hfeng /home/hfeng/.emacs.d
-RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
 # language suport
 RUN apt-get install -y g++ default-jdk maven
@@ -52,6 +40,7 @@ RUN apt-get update && \
       zlib1g-dev \
       libmysqlclient-dev \
       mysql-client \
+      mysql-server \
       imagemagick \
       libmagick++-dev \
       openjdk-7-jre-headless \
@@ -79,6 +68,19 @@ RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
   cd - && \
   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
+
+# Add user
+
+# /etc/sudoers is needed this
+RUN apt-get install -y sudo
+
+RUN useradd -s /bin/bash -m hfeng
+RUN echo "hfeng:hfeng" | chpasswd
+RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
+
+RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
+RUN chown -hR hfeng /home/hfeng/.emacs.d
+RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
 EXPOSE 22
 CMD ["/etc/init.d/ssh", "start", "-D"]
