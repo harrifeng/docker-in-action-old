@@ -2,31 +2,28 @@ FROM ubuntu:14.04
 
 MAINTAINER harrifeng "harrifeng@gmail.com"
 
-RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
+# company  firewall
+ENV http_proxy http://proxy.sin.sap.corp:8080
+ENV https_proxy http://proxy.sin.sap.corp:8080
+# For testcase
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV TZ US/Pacific
 
-RUN apt-get update
+# RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
 
-# X-windows support, may not needed any more
-# RUN apt-get install -y x-window-system xfce4
-
-# Font inconsolata
-RUN apt-get install -y fonts-wqy-zenhei fonts-inconsolata
-
-# language suport
-RUN apt-get install -y g++ default-jdk maven
-
-# Network utility
-RUN apt-get install -y net-tools iputils-ping curl
-
-RUN apt-get install -y emacs24
-
-RUN apt-get install -y openssh-server
-
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install \
-       software-properties-common python-software-properties
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
+      fonts-wqy-zenhei \
+      fonts-inconsolata \
+      g++ \
+      openssh-server \
+      default-jdk \
+      maven golang \
+      net-tools \
+      iputils-ping \
+      curl \
+      software-properties-common python-software-properties \
       build-essential \
       curl \
       git-core \
