@@ -26,29 +26,29 @@ RUN apt-get update && \
       # golang \
       net-tools \
       iputils-ping \
-      curl \
-      software-properties-common python-software-properties \
-      build-essential \
-      git-core \
-      libcurl4-openssl-dev \
-      libreadline-dev \
-      libssl-dev \
-      libxml2-dev \
-      libxslt1-dev \
-      libyaml-dev \
-      p7zip-full \
-      zlib1g-dev \
-      libmysqlclient-dev \
-      mysql-client \
-      imagemagick \
-      libmagick++-dev \
-      openjdk-7-jre-headless \
-      poppler-utils \
-      phantomjs \
-      opensaml2-tools \
-      libicu-dev \
-      unixodbc-dev \
-      libffi-dev
+      curl
+      # software-properties-common python-software-properties \
+      # build-essential \
+      # git-core \
+      # libcurl4-openssl-dev \
+      # libreadline-dev \
+      # libssl-dev \
+      # libxml2-dev \
+      # libxslt1-dev \
+      # libyaml-dev \
+      # p7zip-full \
+      # zlib1g-dev \
+      # libmysqlclient-dev \
+      # mysql-client \
+      # imagemagick \
+      # libmagick++-dev \
+      # openjdk-7-jre-headless \
+      # poppler-utils \
+      # phantomjs \
+      # opensaml2-tools \
+      # libicu-dev \
+      # unixodbc-dev \
+      # libffi-dev
 
 RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
@@ -63,7 +63,7 @@ RUN echo "[supervisord]" >> /etc/supervisor/supervisord.conf && \
     echo "" >> /etc/supervisor/supervisord.conf && \
     echo "[program:mysql]" >> /etc/supervisor/supervisord.conf && \
     echo "command=/etc/init.d/mysql start -D" >> /etc/supervisor/supervisord.conf && \
-    echo "" >> /etc/supervisor/supervisord.conf && \
+    echo "" >> /etc/supervisor/supervisord.conf
 
 
 # RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
