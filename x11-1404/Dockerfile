@@ -14,6 +14,7 @@ ENV TZ US/Pacific
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
+      curl \
       fonts-wqy-zenhei \
       fonts-inconsolata \
       g++ \
@@ -25,7 +26,6 @@ RUN apt-get update && \
       curl \
       software-properties-common python-software-properties \
       build-essential \
-      curl \
       git-core \
       libcurl4-openssl-dev \
       libreadline-dev \
@@ -36,7 +36,7 @@ RUN apt-get update && \
       p7zip-full \
       zlib1g-dev \
       libmysqlclient-dev \
-      mysql-client \
+      mysql-client
       mysql-server \
       imagemagick \
       libmagick++-dev \
@@ -48,13 +48,13 @@ RUN apt-get update && \
       unixodbc-dev \
       libffi-dev
 
-RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
-  tar -zxvf jsl-0.3.0-src.tar.gz && \
-  cd jsl-0.3.0/src && \
-  make -f Makefile.ref BUILD_OPT=1 && \
-  cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
-  cd - && \
-  rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
+# RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
+#   tar -zxvf jsl-0.3.0-src.tar.gz && \
+#   cd jsl-0.3.0/src && \
+#   make -f Makefile.ref BUILD_OPT=1 && \
+#   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
+#   cd - && \
+#   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
 
 # Add user
 
