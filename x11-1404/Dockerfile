@@ -59,7 +59,7 @@ RUN echo "[supervisord]" >> /etc/supervisor/supervisord.conf && \
     echo "nodaemon=true" >> /etc/supervisor/supervisord.conf && \
     echo "" >> /etc/supervisor/supervisord.conf && \
     echo "[program:sshd]" >> /etc/supervisor/supervisord.conf && \
-    echo "command=/etc/init.d/sshd start -D" >> /etc/supervisor/supervisord.conf && \
+    echo "command=/etc/init.d/ssh start -D" >> /etc/supervisor/supervisord.conf && \
     echo "" >> /etc/supervisor/supervisord.conf && \
     echo "[program:mysql]" >> /etc/supervisor/supervisord.conf && \
     echo "command=/etc/init.d/mysql start -D" >> /etc/supervisor/supervisord.conf && \
