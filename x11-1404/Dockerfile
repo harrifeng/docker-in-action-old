@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM debian:6.0.10
 
 MAINTAINER harrifeng "harrifeng@gmail.com"
 
@@ -14,13 +14,16 @@ ENV TZ US/Pacific
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      curl \
-      fonts-wqy-zenhei \
-      fonts-inconsolata \
-      g++ \
+      # fonts-wqy-zenhei \
+      # fonts-inconsolata \
+      # g++ \
+      supervisor \
       openssh-server \
-      default-jdk \
-      maven golang \
+      mysql-server \
+      sudo \
+      # default-jdk \
+      # maven  \
+      # golang \
       net-tools \
       iputils-ping \
       curl \
@@ -36,8 +39,7 @@ RUN apt-get update && \
       p7zip-full \
       zlib1g-dev \
       libmysqlclient-dev \
-      mysql-client
-      mysql-server \
+      mysql-client \
       imagemagick \
       libmagick++-dev \
       openjdk-7-jre-headless \
@@ -48,26 +50,26 @@ RUN apt-get update && \
       unixodbc-dev \
       libffi-dev
 
-# RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
-#   tar -zxvf jsl-0.3.0-src.tar.gz && \
-#   cd jsl-0.3.0/src && \
-#   make -f Makefile.ref BUILD_OPT=1 && \
-#   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
-#   cd - && \
-#   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
-
-# Add user
-
-# /etc/sudoers is needed this
-RUN apt-get install -y sudo
-
 RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
+RUN echo "root:wyyzmwy" | chpasswd
 RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
-RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
-RUN chown -hR hfeng /home/hfeng/.emacs.d
-RUN chgrp -hR hfeng /home/hfeng/.emacs.d
+RUN echo "[supervisord]" >> /etc/supervisor/supervisord.conf && \
+    echo "nodaemon=true" >> /etc/supervisor/supervisord.conf && \
+    echo "" >> /etc/supervisor/supervisord.conf && \
+    echo "[program:sshd]" >> /etc/supervisor/supervisord.conf && \
+    echo "command=/etc/init.d/sshd start -D" >> /etc/supervisor/supervisord.conf && \
+    echo "" >> /etc/supervisor/supervisord.conf && \
+    echo "[program:mysql]" >> /etc/supervisor/supervisord.conf && \
+    echo "command=/etc/init.d/mysql start -D" >> /etc/supervisor/supervisord.conf && \
+    echo "" >> /etc/supervisor/supervisord.conf && \
+
+
+# RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
+# RUN chown -hR hfeng /home/hfeng/.emacs.d
+# RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
 EXPOSE 22
-CMD ["/etc/init.d/ssh", "start", "-D"]
+EXPOSE 3000
+CMD ["/usr/bin/supervisord"]
