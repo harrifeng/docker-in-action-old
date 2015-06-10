@@ -14,7 +14,6 @@ RUN sed -i 's/archive.ubuntu/mirrors.163/g'  /etc/apt/sources.list
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      fonts-wqy-zenhei \
       fonts-inconsolata \
       g++ \
       supervisor \
@@ -26,7 +25,7 @@ RUN apt-get update && \
       # golang \
       net-tools \
       iputils-ping \
-      curl
+      curl \
       software-properties-common python-software-properties \
       build-essential \
       git-core \
@@ -55,21 +54,15 @@ RUN echo "hfeng:hfeng" | chpasswd
 RUN echo "root:wyyzmwy" | chpasswd
 RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
-RUN echo "[supervisord]" >> /etc/supervisor/supervisord.conf && \
-    echo "nodaemon=true" >> /etc/supervisor/supervisord.conf && \
-    echo "" >> /etc/supervisor/supervisord.conf && \
-    echo "[program:sshd]" >> /etc/supervisor/supervisord.conf && \
-    echo "command=/etc/init.d/ssh start -D" >> /etc/supervisor/supervisord.conf && \
-    echo "" >> /etc/supervisor/supervisord.conf && \
-    echo "[program:mysql]" >> /etc/supervisor/supervisord.conf && \
-    echo "command=/etc/init.d/mysql start -D" >> /etc/supervisor/supervisord.conf && \
-    echo "" >> /etc/supervisor/supervisord.conf
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /var/log/supervisor
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 
 # RUN git clone https://git.coding.net/harrifeng/emacs.d.git /home/hfeng/.emacs.d
 # RUN chown -hR hfeng /home/hfeng/.emacs.d
 # RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
-EXPOSE 22
-EXPOSE 3000
+EXPOSE 22 3000
 CMD ["/usr/bin/supervisord"]
