@@ -26,6 +26,7 @@ RUN apt-get update && \
       net-tools \
       iputils-ping \
       curl \
+      vim \
       dos2unix \
       software-properties-common python-software-properties \
       build-essential \
@@ -86,6 +87,12 @@ RUN curl -O http://10.59.145.111:8000/jsl-0.3.0-src.tar.gz && \
   cd - && \
   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
 
+
+RUN echo "export http_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
+RUN echo "export https_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
+RUN gem source -r https://rubygems.org/
+RUN gem source -a http://ruby.taobao.org/
+RUN gem install bundler -v '1.6.0'
 
 EXPOSE 22 3000
 CMD ["/usr/bin/supervisord"]
