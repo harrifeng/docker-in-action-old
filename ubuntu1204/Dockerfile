@@ -3,8 +3,8 @@ FROM ubuntu:12.04
 MAINTAINER harrifeng "harrifeng@gmail.com"
 
 # company  firewall
-# ENV http_proxy http://proxy.sin.sap.corp:8080
-# ENV https_proxy http://proxy.sin.sap.corp:8080
+ENV http_proxy http://proxy.sha.sap.corp:8080
+ENV https_proxy http://proxy.sha.sap.corp:8080
 # For testcase
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -68,7 +68,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # RUN chown -hR hfeng /home/hfeng/.emacs.d
 # RUN chgrp -hR hfeng /home/hfeng/.emacs.d
 
-RUN curl -O http://192.168.59.3:8000/ruby-2.1.5.tar.gz && \
+RUN curl -O http://10.59.145.111:8000/ruby-2.1.5.tar.gz && \
   tar -zxvf ruby-2.1.5.tar.gz && \
   cd ruby-2.1.5 && \
   CFLAGS="-march=native -O3" ./configure --disable-install-doc && \
@@ -78,14 +78,13 @@ RUN curl -O http://192.168.59.3:8000/ruby-2.1.5.tar.gz && \
   rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
   echo 'install: --no-rdoc --no-ri' > /.gemrc && \
   echo 'update: --no-rdoc --no-ri' >> /.gemrc
-RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
+RUN curl -O http://10.59.145.111:8000/jsl-0.3.0-src.tar.gz && \
   tar -zxvf jsl-0.3.0-src.tar.gz && \
   cd jsl-0.3.0/src && \
   make -f Makefile.ref BUILD_OPT=1 && \
   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
   cd - && \
   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
-
 
 
 EXPOSE 22 3000
