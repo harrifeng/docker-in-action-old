@@ -322,7 +322,6 @@ initramfs-tools                     \
 initscripts                     \
 inkscape                    \
 insserv                         \
--info                   \
 ation-report                \
 intltool-debian                     \
 iproute                         \
