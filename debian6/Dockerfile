@@ -16,7 +16,7 @@ COPY sources.list /etc/apt/sources.list
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
       libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential \
-      unixodbc-dev libxslt1-dev libmysqlclient-dev imagemagick libmagickwand-dev libicu44 libicu-dev sun-java6-jdk \
+      unixodbc-dev libxslt1-dev libmysqlclient-dev imagemagick libmagickwand-dev libicu44 libicu-dev \
       supervisor \
       openssh-server \
       mysql-server \
