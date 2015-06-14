@@ -18,8 +18,8 @@ COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
-      # fonts-inconsolata \
-      # g++ \
+      libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential \
+      unixodbc-dev libxslt1-dev libmysqlclient-dev imagemagick libmagickwls and-dev libicu44 libicu-dev sun-java6-jdk \
       supervisor \
       openssh-server \
       mysql-server \
@@ -69,30 +69,30 @@ VOLUME ["/var/lib/mysql"]
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# RUN curl -O http://192.168.59.3:8000/ruby-2.1.5.tar.gz && \
-#   tar -zxvf ruby-2.1.5.tar.gz && \
-#   cd ruby-2.1.5 && \
-#   CFLAGS="-march=native -O3" ./configure --disable-install-doc && \
-#   CFLAGS="-march=native -O3" make -j 9 && \
-#   make install && \
-#   cd .. && \
-#   rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
-#   echo 'install: --no-rdoc --no-ri' > /.gemrc && \
-#   echo 'update: --no-rdoc --no-ri' >> /.gemrc
-# RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
-#   tar -zxvf jsl-0.3.0-src.tar.gz && \
-#   cd jsl-0.3.0/src && \
-#   make -f Makefile.ref BUILD_OPT=1 && \
-#   cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
-#   cd - && \
-#   rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
+RUN curl -O http://192.168.59.3:8000/ruby-2.1.5.tar.gz && \
+  tar -zxvf ruby-2.1.5.tar.gz && \
+  cd ruby-2.1.5 && \
+  CFLAGS="-march=native -O3" ./configure --disable-install-doc && \
+  CFLAGS="-march=native -O3" make -j 9 && \
+  make install && \
+  cd .. && \
+  rm -r ruby-2.1.5 ruby-2.1.5.tar.gz && \
+  echo 'install: --no-rdoc --no-ri' > /.gemrc && \
+  echo 'update: --no-rdoc --no-ri' >> /.gemrc
+RUN curl -O http://192.168.59.3:8000/jsl-0.3.0-src.tar.gz && \
+  tar -zxvf jsl-0.3.0-src.tar.gz && \
+  cd jsl-0.3.0/src && \
+  make -f Makefile.ref BUILD_OPT=1 && \
+  cp Linux_All_OPT.OBJ/jsl /usr/local/bin && \
+  cd - && \
+  rm -r jsl-0.3.0 jsl-0.3.0-src.tar.gz
 
-#
-# RUN echo "export http_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
-# RUN echo "export https_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
-# RUN gem source -r https://rubygems.org/
-# RUN gem source -a http://ruby.taobao.org/
-# RUN gem install bundler -v '1.6.0'
+
+RUN echo "export http_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
+RUN echo "export https_proxy='http://proxy.sin.sap.corp:8080'" >> /home/hfeng/.bashrc
+RUN gem source -r https://rubygems.org/
+RUN gem source -a http://ruby.taobao.org/
+RUN gem install bundler -v '1.6.0'
 #
 # RUN apt-get install -y ffmpeg
 

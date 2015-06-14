@@ -9,7 +9,6 @@ alsa-base                   \
 alsa-utils                  \
 anacron                         \
 apache2.2-bin                   \
-app--data               \
 apt                         \
 apt-listchanges                     \
 apt-utils                   \
@@ -221,7 +220,6 @@ gnome-applets-data              \
 gnome-backgrounds               \
 gnome-bluetooth                     \
 gnome-cards-data                \
-gnome-codec-                \
 gnome-control-center                \
 gnome-core                  \
 gnome-desktop-data              \
@@ -270,7 +268,6 @@ gnuchess                    \
 gnuchess-book                   \
 gnupg                       \
 gok                         \
-google-chrome-stable                \
 gpgv                        \
 grep                        \
 groff-base                  \
@@ -322,7 +319,6 @@ initramfs-tools                     \
 initscripts                     \
 inkscape                    \
 insserv                         \
-ation-report                \
 intltool-debian                     \
 iproute                         \
 iptables                    \
@@ -515,7 +511,6 @@ libexo-common                   \
 libexpat1                   \
 libexpat1-dev                   \
 libfaad2                    \
-libfam0                         \
 libffi-dev                  \
 libffi5                         \
 libfftw3-3                  \
@@ -769,8 +764,6 @@ libmusicbrainz3-6               \
 libmusicbrainz4c2a              \
 libmysqlclient-dev              \
 libmysqlclient16                \
-libmysqlclient18                \
-libmysqlclient18.1              \
 libmythes-1.2-0                     \
 libnautilus-extension1              \
 libncurses5                     \
@@ -830,7 +823,6 @@ libpci3                         \
 libpciaccess0                   \
 libpcre3                    \
 libpcsclite1                    \
-libperconaserverclient18.1          \
 libperl5.10                     \
 libpixman-1-0                   \
 libpixman-1-dev                     \
@@ -1179,9 +1171,6 @@ p7zip-full                  \
 passwd                      \
 patch                       \
 pciutils                    \
-percona-server-client-5.6           \
-percona-server-common-5.6           \
-percona-server-server-5.6           \
 perl                        \
 perl-base                   \
 perl-modules                    \
