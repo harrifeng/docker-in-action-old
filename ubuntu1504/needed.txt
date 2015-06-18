@@ -1,0 +1,1 @@
+unixodbc-dev libxslt1-dev libmysqlclient-dev imagemagick libmagickwand-dev libicu44 libicu-dev sun-java6-jdk
