@@ -2,13 +2,11 @@ FROM ubuntu:15.04
 
 MAINTAINER harrifeng "harrifeng@gmail.com"
 
-RUN rm /etc/apt/sources.list
-COPY sources.list /etc/apt/sources.list
-
 RUN apt-get update && \
-      supervisor \
-      openssh-server \
-      mysql-server
+    DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    supervisor \
+    openssh-server \
+    mysql-server
 
 RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
