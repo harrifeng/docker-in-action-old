@@ -5,7 +5,8 @@ MAINTAINER harrifeng "harrifeng@gmail.com"
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
     supervisor \
-    openssh-server
+    openssh-server \
+    mysql-server
 
 RUN useradd -s /bin/bash -m hfeng
 RUN echo "hfeng:hfeng" | chpasswd
@@ -14,6 +15,8 @@ RUN echo "hfeng   ALL=(ALL)       ALL" >> /etc/sudoers
 
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
+
+VOLUME ["/var/lib/mysql"]
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
