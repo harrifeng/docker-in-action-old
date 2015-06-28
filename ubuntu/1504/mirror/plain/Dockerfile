@@ -7,6 +7,9 @@ COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    sudo \
+    netcat \
+    iputils-ping \
     supervisor \
     openssh-server
 
@@ -20,5 +23,5 @@ RUN mkdir -p /var/log/supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 22
+EXPOSE 22 5001 5002 5003
 CMD ["/usr/bin/supervisord"]
